@@ -9,6 +9,7 @@ mongoose.connect("mongodb+srv://samarthgupta1202:bXzIVGZ6VSiLdZ9L@cluster0.ptsbh
 
 //Middlewares
 
+app.use(express.json())
 app.use("/books", router) //localhost:5000/books
 
 // bXzIVGZ6VSiLdZ9L

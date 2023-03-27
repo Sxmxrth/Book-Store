@@ -15,4 +15,87 @@ const getAllBooks = async (req, res, next) => {
     return res.status(200).json({books})
 }
 
-exports.getAllBooks = getAllBooks; // this exports the object with getAllBooks function
+const addBooks = async (req, res, next) => {
+    //  This route adds all books
+    const {name, author, description, price, available} = req.body;
+    let book;
+    try{
+        book = new Book({
+            name,
+            author,
+            description,
+            price,
+            available
+        })
+        await book.save();
+    }catch(err){
+        console.log(err);
+    }
+    
+    if(!book){
+        return res.status(404).json({message : "Unable to add books"})
+    }
+    return res.status(200).json({book})
+     
+}
+
+const getByID = async (req, res, next) => {
+
+    const id = req.params.id;
+    let book;
+    try{
+        book = await Book.findById(id);
+    } catch(err){
+        console.log(err);
+    }
+
+    if(!book){
+        return res.status(404).json({message : "No book found"})
+    }
+    return res.status(200).json({book})
+}
+
+const updateBook = async (req, res, next) => {
+    const id = req.params.id;
+    const {name, author, description, price, available} = req.body;
+    let book;
+    try{
+        book = await Book.findByIdAndUpdate(id, {
+            name,
+            author,
+            description,
+            price,
+            available
+        })
+        book = await book.save();
+    } catch(err){
+        console.log(err);
+    }
+    
+    if(!book){
+        return res.status(404).json({message : "Unable to find book"})
+    }
+    return res.status(200).json({book})
+}
+
+const deleteBook = async (req, res, next) => {
+    const id = req.params.id;
+    let book;
+
+    try{
+        book = await Book.findByIdAndDelete(id)
+    } catch(err){
+        console.log(err);
+    }
+    if(!book){
+        return res.status(404).json({message : "Unable to find book"})
+    }
+    return res.status(200).json({book})
+
+}
+
+module.exports.getAllBooks = getAllBooks; // this exports the object with getAllBooks function
+module.exports.addBooks = addBooks;
+module.exports.getByID = getByID;
+module.exports.updateBook = updateBook;
+module.exports.deleteBook = deleteBook;
