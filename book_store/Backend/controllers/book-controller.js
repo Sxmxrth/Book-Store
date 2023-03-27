@@ -17,7 +17,7 @@ const getAllBooks = async (req, res, next) => {
 
 const addBooks = async (req, res, next) => {
     //  This route adds all books
-    const {name, author, description, price, available} = req.body;
+    const {name, author, description, price, available, image} = req.body;
     let book;
     try{
         book = new Book({
@@ -25,7 +25,8 @@ const addBooks = async (req, res, next) => {
             author,
             description,
             price,
-            available
+            available,
+            image
         })
         await book.save();
     }catch(err){
@@ -57,7 +58,7 @@ const getByID = async (req, res, next) => {
 
 const updateBook = async (req, res, next) => {
     const id = req.params.id;
-    const {name, author, description, price, available} = req.body;
+    const {name, author, description, price, available, image} = req.body;
     let book;
     try{
         book = await Book.findByIdAndUpdate(id, {
@@ -65,7 +66,8 @@ const updateBook = async (req, res, next) => {
             author,
             description,
             price,
-            available
+            available,
+            image
         })
         book = await book.save();
     } catch(err){
