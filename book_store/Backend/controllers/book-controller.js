@@ -15,4 +15,4 @@ const getAllBooks = async (req, res, next) => {
     return res.status(200).json({books})
 }
 
-exports.getAllBooks = getAllBooks;
+exports.getAllBooks = getAllBooks; // this exports the object with getAllBooks function
