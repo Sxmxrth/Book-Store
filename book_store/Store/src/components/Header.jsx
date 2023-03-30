@@ -8,8 +8,10 @@ const Header = () => {
   return (
     <div>
       <AppBar sx={{backgroundColor : '#2E4053'}} position='sticky'>
-        <Toolbar>
+        <Toolbar >
+        <NavLink to = "/" style = {{color : "white"}}>
             <Typography><LibraryBooksIcon/></Typography>
+            </NavLink>
             <Tabs textColor='inherit' indicatorColor='primary' value={value} onChange = {(e, val) => setValue(val)} sx={{ml : 'auto'}}>
                 <Tab label = 'Add Book' LinkComponent={NavLink} to = "/add" />
                 <Tab label = 'Books' LinkComponent={NavLink} to = "/books"/>

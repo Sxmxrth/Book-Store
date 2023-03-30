@@ -56,7 +56,7 @@ const AddBook = () => {
         <TextField value={input.image} onChange = {handleChange} margin='normal' fullWidth variant='outlined' name='image'></TextField>
         <FormControlLabel control={<Checkbox checked = {checked} onChange = {() => setChecked(!checked)} />} label="Available" />
 
-        <Button variant='contained' type='submit' >Add</Button>
+        <Button variant='contained' type='submit' >Add Book</Button>
         </Box>
       </form>
     </div>
