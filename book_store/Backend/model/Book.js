@@ -25,9 +25,26 @@ const bookSchema = new Schema({
     image : {
         type : String,
         required : true
+    },
+    category : {
+        type : String,
+        required : false
     }
 })
 
- module.exports = mongoose.model("Book", bookSchema);
+const categorySchema = new Schema({
+    name : {
+        type : String,
+        required : true
+    },
+})
+
+const Book = mongoose.model("Book", bookSchema);
+const Category = mongoose.model("Category", categorySchema);
+
+module.exports = {
+  Book,
+  Category
+};
 
  //Book => books

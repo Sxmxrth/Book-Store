@@ -30,7 +30,8 @@ const BookDetails = () => {
         description : String(input.description),
         price : Number(input.price),
         image : String(input.image),
-        available : Boolean(checked)
+        available : Boolean(checked),
+        category : String(input.category)
       }).then(res => res.data)
     }
 

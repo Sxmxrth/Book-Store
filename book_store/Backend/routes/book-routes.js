@@ -8,6 +8,6 @@ router.post("/", bookController.addBooks );
 router.get("/:id", bookController.getByID);
 router.put("/:id", bookController.updateBook)
 router.delete("/:id", bookController.deleteBook)
-
+router.get("/categories/find", bookController.getCategory)
 
 module.exports = router;
