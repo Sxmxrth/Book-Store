@@ -93,23 +93,6 @@ const AddBook = () => {
           <TextField value={input.image} onChange={handleChange} margin='normal' fullWidth variant='outlined' name='image' required></TextField>
           <FormControlLabel control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />} label="Available" />
           <br />
-          <FormLabel>Category</FormLabel>
-          <Select
-            value={input.category}
-            onChange={handleCategoryChange}
-            name="category"
-            fullWidth
-            variant="outlined"
-            required
-          >
-            {categories.map((category, index) => (
-              <MenuItem key={index} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-          <br />
-
           <Button variant='contained' type='submit'>Add Book</Button>
         </Box>
       </form>

@@ -1,4 +1,4 @@
-const { Book, Category } = require('../model/Book')
+const { Book } = require('../model/Book')
 
 const getAllBooks = async (req, res, next) => {
     // This route provides all the books
@@ -17,8 +17,10 @@ const getAllBooks = async (req, res, next) => {
 
 const addBooks = async (req, res, next) => {
     //  This route adds all books
-    const {name, author, description, price, available, image, category} = req.body;
+    const {name, author, description, price, available, image} = req.body;
     let book;
+    console.log(name);
+    console.log(author);
     try{
         book = new Book({
             name,
@@ -27,9 +29,9 @@ const addBooks = async (req, res, next) => {
             price,
             available,
             image,
-            category
         })
         await book.save();
+        console.log(book);
     }catch(err){
         console.log(err);
     }
@@ -59,7 +61,7 @@ const getByID = async (req, res, next) => {
 
 const updateBook = async (req, res, next) => {
     const id = req.params.id;
-    const {name, author, description, price, available, image, category} = req.body;
+    const {name, author, description, price, available, image} = req.body;
     let book;
     try{
         book = await Book.findByIdAndUpdate(id, {
@@ -69,7 +71,6 @@ const updateBook = async (req, res, next) => {
             price,
             available,
             image, 
-            category,
         })
         book = await book.save();
     } catch(err){
@@ -98,16 +99,6 @@ const deleteBook = async (req, res, next) => {
 
 }
 
-const getCategory = async (req, res, next) => {
-    let categories;
-    try{
-        categories = await Category.find();
-        // console.log(categories);
-    } catch{
-        console.log(err);
-    }
-    return res.status(200).json({categories})
-}
 
 
 module.exports.getAllBooks = getAllBooks; // this exports the object with getAllBooks function
@@ -115,4 +106,3 @@ module.exports.addBooks = addBooks;
 module.exports.getByID = getByID;
 module.exports.updateBook = updateBook;
 module.exports.deleteBook = deleteBook;
-module.exports.getCategory = getCategory;
